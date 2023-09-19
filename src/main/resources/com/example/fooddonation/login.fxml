@@ -36,8 +36,8 @@
             <TextField fx:id="fieldUsername" layoutX="95.0" layoutY="134.0" prefHeight="26.0" prefWidth="173.0" promptText="Enter Username" />
             <Label layoutX="25.0" layoutY="191.0" text="Password" />
             <PasswordField fx:id="fieldPassword" layoutX="95.0" layoutY="187.0" prefHeight="26.0" prefWidth="173.0" promptText="Enter Password" />
-            <Button fx:id="btnLogin" layoutX="27.0" layoutY="278.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="249.0" text="Login" />
-            <Label layoutX="70.0" layoutY="239.0" prefHeight="17.0" prefWidth="164.0" text="Invalid login. Please try again" textAlignment="CENTER" textFill="#c91212" />
+            <Button fx:id="btnLogin" layoutX="27.0" layoutY="278.0" mnemonicParsing="false" onAction="#loginButtonAction" prefHeight="25.0" prefWidth="249.0" text="Login" />
+            <Label fx:id="labelLoginMessage" layoutX="70.0" layoutY="239.0" prefHeight="17.0" prefWidth="164.0" textAlignment="CENTER" textFill="#c91212" />
          </children>
       </AnchorPane>
    </right>

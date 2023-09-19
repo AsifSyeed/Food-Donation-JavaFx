@@ -2,18 +2,21 @@ package com.example.fooddonation;
 
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
+import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
+import javafx.stage.StageStyle;
 
 import java.io.IOException;
+import java.util.Objects;
 
 public class FoodDonationApplication extends Application {
     @Override
     public void start(Stage stage) throws IOException {
-        FXMLLoader fxmlLoader = new FXMLLoader(FoodDonationApplication.class.getResource("login-view.fxml"));
-        Scene scene = new Scene(fxmlLoader.load(), 520, 400);
+        Parent root = FXMLLoader.load(getClass().getResource("login.fxml"));
+
         stage.setTitle("Food Donation");
-        stage.setScene(scene);
+        stage.setScene(new Scene(root, 520, 400));
         stage.show();
     }
 
