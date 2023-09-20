@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ComboBox?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.PasswordField?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane prefHeight="400.0" prefWidth="520.0" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.fooddonation.controller.SignupController">
+   <children>
+      <Label layoutX="210.0" layoutY="14.0" text="Sign Up" textFill="#f2a500">
+         <font>
+            <Font size="30.0" />
+         </font>
+      </Label>
+      <Label layoutX="62.0" layoutY="89.0" text="Username" />
+      <Label layoutX="63.0" layoutY="138.0" text="Contact Number" />
+      <Label layoutX="66.0" layoutY="181.0" text="Location" />
+      <Label layoutX="63.0" layoutY="221.0" text="Password" />
+      <Label layoutX="64.0" layoutY="262.0" text="Confirm Password" />
+      <TextField fx:id="fieldUsername" layoutX="260.0" layoutY="85.0" />
+      <TextField fx:id="fieldContactNumber" layoutX="260.0" layoutY="134.0" />
+      <PasswordField fx:id="fieldPassword" layoutX="260.0" layoutY="217.0" />
+      <PasswordField fx:id="fieldConfirmPassword" layoutX="260.0" layoutY="258.0" />
+      <Button fx:id="btnSignup" layoutX="231.0" layoutY="318.0" mnemonicParsing="false" onAction="#signupButtonAction" text="Sign up" />
+      <Label layoutX="120.0" layoutY="357.0" text="Already have an account?" />
+      <Button fx:id="btnLogin" layoutX="266.0" layoutY="353.0" mnemonicParsing="false" onAction="#loginButtonAction" text="Login" />
+      <ComboBox fx:id="dropdownLocation" layoutX="260.0" layoutY="177.0" prefHeight="26.0" prefWidth="160.0" />
+      <Label fx:id="labelSignupMessage" alignment="CENTER" layoutX="116.0" layoutY="294.0" textAlignment="CENTER" />
+   </children>
+</AnchorPane>

@@ -37,7 +37,9 @@
             <Label layoutX="25.0" layoutY="191.0" text="Password" />
             <PasswordField fx:id="fieldPassword" layoutX="95.0" layoutY="187.0" prefHeight="26.0" prefWidth="173.0" promptText="Enter Password" />
             <Button fx:id="btnLogin" layoutX="27.0" layoutY="278.0" mnemonicParsing="false" onAction="#loginButtonAction" prefHeight="25.0" prefWidth="249.0" text="Login" />
-            <Label fx:id="labelLoginMessage" layoutX="70.0" layoutY="239.0" prefHeight="17.0" prefWidth="164.0" textAlignment="CENTER" textFill="#c91212" />
+            <Label fx:id="labelLoginMessage" layoutX="70.0" layoutY="244.0" prefHeight="17.0" prefWidth="164.0" textAlignment="CENTER" textFill="#c91212" />
+            <Label layoutX="34.0" layoutY="327.0" text="Don't have an account?" textFill="#12f540" />
+            <Button fx:id="btnSignup" layoutX="182.0" layoutY="323.0" mnemonicParsing="false" onAction="#signupButtonAction" text="Sign up" />
          </children>
       </AnchorPane>
    </right>

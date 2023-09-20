@@ -6,7 +6,7 @@ module com.example.fooddonation {
     requires org.postgresql.jdbc;
 
     opens com.example.fooddonation to javafx.fxml;
-    opens com.example.fooddonation.controller; // Open the controller package
+    opens com.example.fooddonation.controller;
     exports com.example.fooddonation;
     exports com.example.fooddonation.controller;
 }
