@@ -180,7 +180,7 @@ public class SignupController implements Initializable {
 
             Stage registerStage = new Stage();
             registerStage.initStyle(StageStyle.UNDECORATED);
-            registerStage.setScene(new Scene(root, 520, 400));
+            registerStage.setScene(new Scene(root, 800, 600));
             registerStage.show();
         } catch (Exception e) {
             e.printStackTrace();

@@ -16,7 +16,7 @@ public class FoodDonationApplication extends Application {
         Parent root = FXMLLoader.load(getClass().getResource("login.fxml"));
 
         stage.initStyle(StageStyle.UNDECORATED);
-        stage.setScene(new Scene(root, 520, 400));
+        stage.setScene(new Scene(root, 800, 600));
         stage.show();
     }
 

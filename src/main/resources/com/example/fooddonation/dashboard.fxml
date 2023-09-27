@@ -2,22 +2,39 @@
 
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.effect.ColorAdjust?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.Pane?>
 <?import javafx.scene.text.Font?>
 
-
-<AnchorPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.fooddonation.controller.DashboardController">
+<AnchorPane prefHeight="600.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.fooddonation.controller.DashboardController">
    <children>
-      <Pane layoutX="-1.0" layoutY="-1.0" prefHeight="94.0" prefWidth="600.0">
-         <children>
-            <Label fx:id="labelUsername" layoutX="14.0" layoutY="15.0" textFill="#e82b2b">
-               <font>
-                  <Font name="Damascus Regular" size="32.0" />
-               </font>
-            </Label>
-            <Button layoutX="511.0" layoutY="34.0" mnemonicParsing="false" text="Logout" />
-         </children>
-      </Pane>
+      <Pane layoutX="-1.0" layoutY="88.0" prefHeight="3.0" prefWidth="801.0" style="-fx-background-color: #c97777;" />
+      <Label fx:id="labelUsername" layoutX="28.0" layoutY="25.0" maxHeight="50.0" prefHeight="45.0" prefWidth="268.0" textFill="#c97777">
+         <font>
+            <Font name="Damascus Regular" size="32.0" />
+         </font>
+      </Label>
+      <Button fx:id="btnLogout" blendMode="MULTIPLY" layoutX="696.0" layoutY="17.0" mnemonicParsing="false" onAction="#logoutButtonAction" prefHeight="38.0" prefWidth="65.0" text="Logout" textFill="#c91616">
+         <effect>
+            <ColorAdjust />
+         </effect>
+      </Button>
+      <TableView fx:id="tableRequest" layoutX="72.0" layoutY="150.0" prefHeight="430.0" prefWidth="760.0" AnchorPane.bottomAnchor="20.0" AnchorPane.leftAnchor="20.0" AnchorPane.rightAnchor="20.0" AnchorPane.topAnchor="150.0">
+        <columns>
+          <TableColumn fx:id="colId" prefWidth="75.0" text="ID" />
+          <TableColumn fx:id="colFoodName" prefWidth="279.7517547607422" text="Food Name" />
+            <TableColumn fx:id="colQuantity" prefWidth="197.24822998046875" text="Food Quantity(KG)" />
+            <TableColumn fx:id="colStatus" prefWidth="207.21209716796875" text="Status" />
+        </columns>
+      </TableView>
+      <Label layoutX="29.0" layoutY="105.0" text="Donation Requests" AnchorPane.leftAnchor="20.0">
+         <font>
+            <Font size="20.0" />
+         </font>
+      </Label>
+      <Button fx:id="btnNewRequest" layoutX="684.0" layoutY="105.0" mnemonicParsing="false" onAction="#navigateToNewRequestPage" text="New Request" />
    </children>
 </AnchorPane>

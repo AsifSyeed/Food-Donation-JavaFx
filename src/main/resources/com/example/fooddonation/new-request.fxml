@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane prefHeight="600.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.fooddonation.controller.NewRequestController">
+   <children>
+      <Label alignment="CENTER" contentDisplay="CENTER" layoutX="18.0" layoutY="126.0" text="New Donation Request" textAlignment="CENTER" textFill="#f2a500" AnchorPane.leftAnchor="18.0" AnchorPane.rightAnchor="22.0">
+         <font>
+            <Font size="30.0" />
+         </font>
+      </Label>
+      <Label layoutX="219.0" layoutY="218.0" text="Food Name" />
+      <Label layoutX="220.0" layoutY="267.0" text="Food Quantity" />
+      <Label layoutX="223.0" layoutY="310.0" text="Location" />
+      <TextField fx:id="fieldFoodName" layoutX="417.0" layoutY="214.0" promptText="Enter Food Name" />
+      <TextField fx:id="fieldFoodQuantity" layoutX="417.0" layoutY="263.0" promptText="Enter Food Quantity (KG)" />
+      <Button fx:id="btnNewRequest" layoutX="362.0" layoutY="434.0" mnemonicParsing="false" onAction="#newRequestAction" text="Add new request" />
+      <Label fx:id="labelNewRequestMessage" alignment="CENTER" contentDisplay="CENTER" layoutX="171.0" layoutY="374.0" prefHeight="26.0" prefWidth="472.0" textAlignment="CENTER" AnchorPane.leftAnchor="171.0" AnchorPane.rightAnchor="157.0" />
+      <TextField fx:id="fieldDonorLocation" disable="true" layoutX="417.0" layoutY="306.0" />
+      <Button fx:id="btnBackToDashboard" layoutX="356.0" layoutY="478.0" mnemonicParsing="false" onAction="#navigateToDashboard" text="Back to Dashboard" />
+   </children>
+</AnchorPane>

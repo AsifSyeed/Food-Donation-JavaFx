@@ -7,40 +7,42 @@
 <?import javafx.scene.effect.Glow?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.Pane?>
 <?import javafx.scene.text.Font?>
 
-<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="520.0" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.fooddonation.controller.LoginController">
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.fooddonation.controller.LoginController">
    <left>
-      <AnchorPane prefHeight="407.0" prefWidth="228.0" BorderPane.alignment="CENTER">
+      <AnchorPane prefHeight="600.0" prefWidth="407.0" BorderPane.alignment="CENTER">
          <children>
-            <Label layoutX="63.0" layoutY="138.0" text="Food" textAlignment="CENTER" textFill="#c97777">
+            <Label layoutX="127.0" layoutY="225.0" text="Food" textAlignment="CENTER" textFill="#c97777">
                <font>
-                  <Font name="Apple SD Gothic Neo Regular" size="48.0" />
+                  <Font name="Apple SD Gothic Neo Regular" size="60.0" />
                </font>
             </Label>
-            <Label layoutX="32.0" layoutY="200.0" text="Donation" textAlignment="CENTER" textFill="#c97777">
+            <Label layoutX="78.0" layoutY="296.0" text="Donation" textAlignment="CENTER" textFill="#c97777">
                <font>
-                  <Font name="Apple SD Gothic Neo Regular" size="48.0" />
+                  <Font name="Apple SD Gothic Neo Regular" size="60.0" />
                </font>
             </Label>
+            <Pane layoutX="388.0" layoutY="-3.0" prefHeight="604.0" prefWidth="20.0" style="-fx-background-color: #c97777;" />
          </children>
          <effect>
             <Glow level="0.44" />
          </effect>
       </AnchorPane>
    </left>
-   <right>
-      <AnchorPane prefHeight="400.0" prefWidth="332.0" BorderPane.alignment="CENTER">
+   <center>
+      <AnchorPane prefHeight="600.0" prefWidth="439.0" BorderPane.alignment="CENTER">
          <children>
-            <Label layoutX="25.0" layoutY="138.0" text="Username" />
-            <TextField fx:id="fieldUsername" layoutX="95.0" layoutY="134.0" prefHeight="26.0" prefWidth="173.0" promptText="Enter Username" />
-            <Label layoutX="25.0" layoutY="191.0" text="Password" />
-            <PasswordField fx:id="fieldPassword" layoutX="95.0" layoutY="187.0" prefHeight="26.0" prefWidth="173.0" promptText="Enter Password" />
-            <Button fx:id="btnLogin" layoutX="27.0" layoutY="278.0" mnemonicParsing="false" onAction="#loginButtonAction" prefHeight="25.0" prefWidth="249.0" text="Login" />
-            <Label fx:id="labelLoginMessage" layoutX="70.0" layoutY="244.0" prefHeight="17.0" prefWidth="164.0" textAlignment="CENTER" textFill="#c91212" />
-            <Label layoutX="34.0" layoutY="327.0" text="Don't have an account?" textFill="#12f540" />
-            <Button fx:id="btnSignup" layoutX="182.0" layoutY="323.0" mnemonicParsing="false" onAction="#signupButtonAction" text="Sign up" />
+            <Label layoutX="76.0" layoutY="181.0" text="Username" />
+            <TextField fx:id="fieldUsername" layoutX="146.0" layoutY="177.0" prefHeight="26.0" prefWidth="173.0" promptText="Enter Username" />
+            <Label layoutX="76.0" layoutY="234.0" text="Password" />
+            <PasswordField fx:id="fieldPassword" layoutX="146.0" layoutY="230.0" prefHeight="26.0" prefWidth="173.0" promptText="Enter Password" />
+            <Button fx:id="btnLogin" layoutX="78.0" layoutY="321.0" mnemonicParsing="false" onAction="#loginButtonAction" prefHeight="25.0" prefWidth="249.0" text="Login" />
+            <Label fx:id="labelLoginMessage" alignment="CENTER" contentDisplay="CENTER" layoutX="1.0" layoutY="287.0" prefHeight="17.0" prefWidth="396.0" textAlignment="CENTER" textFill="#c91212" />
+            <Label layoutX="85.0" layoutY="370.0" text="Don't have an account?" textFill="#12f540" />
+            <Button fx:id="btnSignup" layoutX="233.0" layoutY="366.0" mnemonicParsing="false" onAction="#signupButtonAction" text="Sign up" />
          </children>
       </AnchorPane>
-   </right>
+   </center>
 </BorderPane>
