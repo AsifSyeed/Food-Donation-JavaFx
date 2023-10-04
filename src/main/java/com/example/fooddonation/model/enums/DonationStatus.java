@@ -1,4 +1,4 @@
-package com.example.fooddonation.model;
+package com.example.fooddonation.model.enums;
 
 public enum DonationStatus {
     PENDING(1, "Requested"),

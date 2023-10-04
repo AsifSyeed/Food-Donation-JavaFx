@@ -13,7 +13,7 @@ import java.util.Objects;
 public class FoodDonationApplication extends Application {
     @Override
     public void start(Stage stage) throws IOException {
-        Parent root = FXMLLoader.load(getClass().getResource("login.fxml"));
+        Parent root = FXMLLoader.load(getClass().getResource("landing-page.fxml"));
 
         stage.initStyle(StageStyle.UNDECORATED);
         stage.setScene(new Scene(root, 800, 600));

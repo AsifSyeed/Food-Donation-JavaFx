@@ -2,7 +2,7 @@ package com.example.fooddonation.controller;
 
 import com.example.fooddonation.DatabaseConnection;
 import com.example.fooddonation.model.DonationRequest;
-import com.example.fooddonation.model.DonationStatus;
+import com.example.fooddonation.model.enums.DonationStatus;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
@@ -104,7 +104,7 @@ public class DashboardController implements Initializable {
 
     public void logoutButtonAction(ActionEvent event) {
         try {
-            Parent root = FXMLLoader.load(getClass().getResource("/com/example/fooddonation/login.fxml"));
+            Parent root = FXMLLoader.load(getClass().getResource("/com/example/fooddonation/landing-page.fxml"));
 
             Stage registerStage = new Stage();
             registerStage.initStyle(StageStyle.UNDECORATED);

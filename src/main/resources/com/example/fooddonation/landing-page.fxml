@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane prefHeight="600.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.fooddonation.controller.LandingController">
+   <children>
+      <ImageView fx:id="imageViewLogo" fitHeight="300.0" fitWidth="300.0" layoutX="255.0" layoutY="30.0" pickOnBounds="true" preserveRatio="true" AnchorPane.leftAnchor="255.0" AnchorPane.rightAnchor="245.0" AnchorPane.topAnchor="30.0" />
+      <Label fx:id="labelTitle" layoutX="339.0" layoutY="367.0" text="Donate your food">
+         <font>
+            <Font size="18.0" />
+         </font>
+      </Label>
+      <ImageView fx:id="imageViewDonate" fitHeight="96.0" fitWidth="124.0" layoutX="201.0" layoutY="441.0" onMouseClicked="#donateButtonAction" pickOnBounds="true" preserveRatio="true" AnchorPane.leftAnchor="200.0" />
+      <ImageView fx:id="imageViewDelivery" fitHeight="96.0" fitWidth="124.0" layoutX="537.0" layoutY="443.0" onMouseClicked="#deliveryButtonAction" pickOnBounds="true" preserveRatio="true" AnchorPane.rightAnchor="200.0" />
+      <Label layoutX="234.0" layoutY="549.0" text="Donate">
+         <font>
+            <Font size="14.0" />
+         </font>
+      </Label>
+      <Label layoutX="514.0" layoutY="549.0" text="Delivery">
+         <font>
+            <Font size="14.0" />
+         </font>
+      </Label>
+      <Button layoutX="17.0" layoutY="17.0" mnemonicParsing="false" onAction="#adminButtonAction" text="Admin" />
+      <Button layoutX="732.0" layoutY="16.0" mnemonicParsing="false" onAction="#agentButtonAction" text="Agent" />
+   </children>
+</AnchorPane>

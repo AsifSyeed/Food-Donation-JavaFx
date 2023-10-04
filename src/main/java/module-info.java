@@ -11,4 +11,6 @@ module com.example.fooddonation {
     exports com.example.fooddonation;
     exports com.example.fooddonation.controller;
     exports com.example.fooddonation.model;
+    exports com.example.fooddonation.model.enums;
+    opens com.example.fooddonation.model.enums;
 }

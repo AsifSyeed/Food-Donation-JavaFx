@@ -1,6 +1,7 @@
 package com.example.fooddonation.controller;
 
 import com.example.fooddonation.DatabaseConnection;
+import com.example.fooddonation.model.enums.UserType;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
@@ -10,6 +11,8 @@ import javafx.scene.control.Label;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
 import javafx.event.ActionEvent;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
 
@@ -33,6 +36,61 @@ public class LoginController {
 
     @FXML
     private Button btnSignup;
+
+    @FXML
+    private ImageView imageViewLogo;
+
+    @FXML
+    private Label labelTitle;
+
+    @FXML
+    private ImageView imageViewBack;
+
+    @FXML
+    private Label labelSignUp;
+
+    private int userType;
+
+    public int getUserType() {
+        return userType;
+    }
+
+    public void setUserType(int userType) {
+        this.userType = userType;
+    }
+
+    public void userTypeValue(int value) {
+        setUserType(value);
+        setLogo();
+    }
+
+    private void setLogo() {
+        if (getUserType() == UserType.DONOR.getValue()) {
+            Image imageDonate = new Image(getClass().getResourceAsStream("/com/example/fooddonation/assets/donate.png"));
+            imageViewLogo.setImage(imageDonate);
+            labelTitle.setText("Donor Login");
+        } else if (getUserType() == UserType.DELIVERY_BOY.getValue()) {
+            Image imageDelivery = new Image(getClass().getResourceAsStream("/com/example/fooddonation/assets/delivery.png"));
+            imageViewLogo.setImage(imageDelivery);
+            labelTitle.setText("Delivery Boy Login");
+        } else {
+            btnSignup.setVisible(false);
+            labelSignUp.setVisible(false);
+
+            if (getUserType() == UserType.ADMIN.getValue()) {
+                Image imageAdmin = new Image(getClass().getResourceAsStream("/com/example/fooddonation/assets/admin.png"));
+                imageViewLogo.setImage(imageAdmin);
+                labelTitle.setText("Admin Login");
+            } else if (getUserType() == UserType.AGENT.getValue()) {
+                Image imageAgent = new Image(getClass().getResourceAsStream("/com/example/fooddonation/assets/agent.png"));
+                imageViewLogo.setImage(imageAgent);
+                labelTitle.setText("Agent Login");
+            }
+        }
+
+        Image imageDelivery = new Image(getClass().getResourceAsStream("/com/example/fooddonation/assets/back.png"));
+        imageViewBack.setImage(imageDelivery);
+    }
 
     public void loginButtonAction(ActionEvent event) {
         labelLoginMessage.setText("You try to login");
@@ -92,6 +150,21 @@ public class LoginController {
         try {
 
             Parent root = FXMLLoader.load(getClass().getResource("/com/example/fooddonation/signup.fxml"));
+
+            Stage registerStage = new Stage();
+            registerStage.initStyle(StageStyle.UNDECORATED);
+            registerStage.setScene(new Scene(root, 800, 600));
+            registerStage.show();
+        } catch (Exception e) {
+            e.printStackTrace();
+            e.getCause();
+        }
+    }
+
+    public void backButtonAction() {
+        try {
+
+            Parent root = FXMLLoader.load(getClass().getResource("/com/example/fooddonation/landing-page.fxml"));
 
             Stage registerStage = new Stage();
             registerStage.initStyle(StageStyle.UNDECORATED);

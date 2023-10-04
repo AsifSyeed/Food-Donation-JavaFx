@@ -1,6 +1,7 @@
 package com.example.fooddonation.controller;
 
 import com.example.fooddonation.DatabaseConnection;
+import com.example.fooddonation.model.enums.UserType;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
@@ -32,20 +33,14 @@ public class SignupController implements Initializable {
     private PasswordField fieldConfirmPassword;
 
     @FXML
-    private Button btnSignup;
-
-    @FXML
-    private Button btnLogin;
-
-    @FXML
     private Label labelSignupMessage;
 
-    private Map<String, String> locationCodeMap = new HashMap<>();
+    private final Map<String, String> locationCodeMap = new HashMap<>();
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
         getLocationList();
     }
-    public void signupButtonAction(ActionEvent event) {
+    public void signupButtonAction() {
         if (fieldUsername.getText().isBlank()) {
             labelSignupMessage.setText("Username cannot be empty");
         } else if (fieldContactNumber.getText().isBlank()) {
@@ -81,7 +76,7 @@ public class SignupController implements Initializable {
             preparedStatement.setString(1, fieldUsername.getText());
             preparedStatement.setString(2, fieldContactNumber.getText());
             preparedStatement.setString(3, fieldPassword.getText());
-            preparedStatement.setInt(4, 1);
+            preparedStatement.setInt(4, UserType.DONOR.getValue());
 
             String selectedLocationName = dropdownLocation.getSelectionModel().getSelectedItem();
             preparedStatement.setString(5, locationCodeMap.get(selectedLocationName));
@@ -174,9 +169,9 @@ public class SignupController implements Initializable {
         }
     }
 
-    public void loginButtonAction(ActionEvent event) {
+    public void loginButtonAction() {
         try {
-            Parent root = FXMLLoader.load(getClass().getResource("/com/example/fooddonation/login.fxml"));
+            Parent root = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("/com/example/fooddonation/login.fxml")));
 
             Stage registerStage = new Stage();
             registerStage.initStyle(StageStyle.UNDECORATED);

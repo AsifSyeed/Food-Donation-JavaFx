@@ -4,45 +4,31 @@
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.PasswordField?>
 <?import javafx.scene.control.TextField?>
-<?import javafx.scene.effect.Glow?>
+<?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.BorderPane?>
-<?import javafx.scene.layout.Pane?>
 <?import javafx.scene.text.Font?>
 
 <BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.fooddonation.controller.LoginController">
-   <left>
-      <AnchorPane prefHeight="600.0" prefWidth="407.0" BorderPane.alignment="CENTER">
-         <children>
-            <Label layoutX="127.0" layoutY="225.0" text="Food" textAlignment="CENTER" textFill="#c97777">
-               <font>
-                  <Font name="Apple SD Gothic Neo Regular" size="60.0" />
-               </font>
-            </Label>
-            <Label layoutX="78.0" layoutY="296.0" text="Donation" textAlignment="CENTER" textFill="#c97777">
-               <font>
-                  <Font name="Apple SD Gothic Neo Regular" size="60.0" />
-               </font>
-            </Label>
-            <Pane layoutX="388.0" layoutY="-3.0" prefHeight="604.0" prefWidth="20.0" style="-fx-background-color: #c97777;" />
-         </children>
-         <effect>
-            <Glow level="0.44" />
-         </effect>
-      </AnchorPane>
-   </left>
-   <center>
+   <top>
       <AnchorPane prefHeight="600.0" prefWidth="439.0" BorderPane.alignment="CENTER">
          <children>
-            <Label layoutX="76.0" layoutY="181.0" text="Username" />
-            <TextField fx:id="fieldUsername" layoutX="146.0" layoutY="177.0" prefHeight="26.0" prefWidth="173.0" promptText="Enter Username" />
-            <Label layoutX="76.0" layoutY="234.0" text="Password" />
-            <PasswordField fx:id="fieldPassword" layoutX="146.0" layoutY="230.0" prefHeight="26.0" prefWidth="173.0" promptText="Enter Password" />
-            <Button fx:id="btnLogin" layoutX="78.0" layoutY="321.0" mnemonicParsing="false" onAction="#loginButtonAction" prefHeight="25.0" prefWidth="249.0" text="Login" />
-            <Label fx:id="labelLoginMessage" alignment="CENTER" contentDisplay="CENTER" layoutX="1.0" layoutY="287.0" prefHeight="17.0" prefWidth="396.0" textAlignment="CENTER" textFill="#c91212" />
-            <Label layoutX="85.0" layoutY="370.0" text="Don't have an account?" textFill="#12f540" />
-            <Button fx:id="btnSignup" layoutX="233.0" layoutY="366.0" mnemonicParsing="false" onAction="#signupButtonAction" text="Sign up" />
+            <Label layoutX="277.0" layoutY="244.0" text="Username" />
+            <TextField fx:id="fieldUsername" layoutX="347.0" layoutY="240.0" prefHeight="26.0" prefWidth="173.0" promptText="Enter Username" />
+            <Label layoutX="277.0" layoutY="297.0" text="Password" />
+            <PasswordField fx:id="fieldPassword" layoutX="347.0" layoutY="293.0" prefHeight="26.0" prefWidth="173.0" promptText="Enter Password" />
+            <Button fx:id="btnLogin" layoutX="279.0" layoutY="384.0" mnemonicParsing="false" onAction="#loginButtonAction" prefHeight="25.0" prefWidth="249.0" text="Login" />
+            <Label fx:id="labelLoginMessage" alignment="CENTER" contentDisplay="CENTER" layoutX="202.0" layoutY="350.0" prefHeight="17.0" prefWidth="396.0" textAlignment="CENTER" textFill="#c91212" />
+            <Label fx:id="labelSignUp" layoutX="286.0" layoutY="433.0" text="Don't have an account?" textFill="#12f540" />
+            <Button fx:id="btnSignup" layoutX="434.0" layoutY="429.0" mnemonicParsing="false" onAction="#signupButtonAction" text="Sign up" />
+            <ImageView fx:id="imageViewLogo" fitHeight="100.0" fitWidth="100.0" layoutX="350.0" layoutY="77.0" pickOnBounds="true" preserveRatio="true" AnchorPane.topAnchor="77.0" />
+            <Label fx:id="labelTitle" alignment="CENTER" contentDisplay="CENTER" layoutX="362.0" layoutY="180.0" text="Donor Login" textAlignment="CENTER" AnchorPane.leftAnchor="100.0" AnchorPane.rightAnchor="100.0">
+               <font>
+                  <Font size="18.0" />
+               </font>
+            </Label>
+            <ImageView fx:id="imageViewBack" fitHeight="30.0" fitWidth="30.0" layoutX="53.0" layoutY="52.0" onMouseClicked="#backButtonAction" pickOnBounds="true" preserveRatio="true" AnchorPane.leftAnchor="30.0" AnchorPane.topAnchor="30.0" />
          </children>
       </AnchorPane>
-   </center>
+   </top>
 </BorderPane>
