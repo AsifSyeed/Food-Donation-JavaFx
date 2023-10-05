@@ -18,6 +18,7 @@ import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
+import org.w3c.dom.events.MouseEvent;
 
 import java.net.URL;
 import java.sql.Connection;
@@ -25,8 +26,7 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.util.ResourceBundle;
 
-public class DashboardController implements Initializable {
-
+public class AdminDashboardController implements Initializable {
     @FXML
     private Label labelUsername;
 
@@ -51,6 +51,9 @@ public class DashboardController implements Initializable {
     @FXML
     private TableColumn<DonationRequest, Integer> colStatus;
 
+    @FXML
+    private TableColumn<DonationRequest, String> colRequestedBy;
+
     private String username;
     ObservableList<DonationRequest> donationList = FXCollections.observableArrayList();
 
@@ -60,6 +63,7 @@ public class DashboardController implements Initializable {
         colFoodName.setCellValueFactory(new PropertyValueFactory<DonationRequest, String>("foodName"));
         colQuantity.setCellValueFactory(new PropertyValueFactory<DonationRequest, Integer>("foodQuantity"));
         colStatus.setCellValueFactory(new PropertyValueFactory<DonationRequest, Integer>("donationStatus"));
+        colRequestedBy.setCellValueFactory(new PropertyValueFactory<DonationRequest, String>("requestedBy"));
 
         donationList = getDonationByCurrentUser();
         tableRequest.setItems(donationList);
@@ -67,13 +71,12 @@ public class DashboardController implements Initializable {
 
     private ObservableList<DonationRequest> getDonationByCurrentUser() {
         DatabaseConnection connectNow = new DatabaseConnection();
-        String getDonationListQuery = "SELECT * FROM donation_request WHERE requested_by = ?";
+        String getDonationListQuery = "SELECT * FROM donation_request";
         ObservableList<DonationRequest> dataList = FXCollections.observableArrayList();
 
         try (Connection connectDB = connectNow.getConnection();
              PreparedStatement preparedStatement = connectDB.prepareStatement(getDonationListQuery)) {
 
-            preparedStatement.setString(1, username);
             ResultSet queryResult = preparedStatement.executeQuery();
 
             while (queryResult.next()) {
@@ -143,4 +146,10 @@ public class DashboardController implements Initializable {
             e.getCause();
         }
     }
+
+    //Mouse event handlers for tableView items
+    public void getDonationItem() {
+        System.out.println("Clicked on " + tableRequest.getSelectionModel().getSelectedItem().getDonationTag());
+    }
 }
+

@@ -9,6 +9,8 @@ import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
 
@@ -36,7 +38,7 @@ public class NewRequestController implements Initializable {
     private Label labelNewRequestMessage;
 
     @FXML
-    private Button btnBackToDashboard;
+    private ImageView imageViewBack;
 
     private String username;
 
@@ -58,6 +60,8 @@ public class NewRequestController implements Initializable {
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
         getUserLocation();
+        Image imageBack = new Image(getClass().getResourceAsStream("/com/example/fooddonation/assets/back.png"));
+        imageViewBack.setImage(imageBack);
     }
 
     private void getUserLocation() {
@@ -109,21 +113,29 @@ public class NewRequestController implements Initializable {
 
     public void newRequestAction() {
         DatabaseConnection connectNow = new DatabaseConnection();
-        String newRequestQuery = "INSERT INTO donation_request (food_name, food_quantity, requested_by, donation_status, donor_location) VALUES (?, ?, ?, ?, ?)";
+        String newRequestQuery = "INSERT INTO donation_request (donation_tag, food_name, food_quantity, requested_by, donation_status, donor_location) VALUES (?, ?, ?, ?, ?, ?)";
 
         try (Connection connectDB = connectNow.getConnection();
              PreparedStatement preparedStatement = connectDB.prepareStatement(newRequestQuery)) {
 
-            preparedStatement.setString(1, fieldFoodName.getText());
-            preparedStatement.setInt(2, Integer.parseInt(fieldFoodQuantity.getText()));
-            preparedStatement.setString(3, getUsername());
-            preparedStatement.setInt(4, 1);
-            preparedStatement.setString(5, getUserLocationCode());
+            String donationTag = generateDonationTag();
+            //Check if the donation tag is unique in database
+            while (!isUniqueDonationTag(donationTag)) {
+                donationTag = generateDonationTag();
+            }
+
+            preparedStatement.setString(1, donationTag);
+            preparedStatement.setString(2, fieldFoodName.getText());
+            preparedStatement.setInt(3, Integer.parseInt(fieldFoodQuantity.getText()));
+            preparedStatement.setString(4, getUsername());
+            preparedStatement.setInt(5, 1);
+            preparedStatement.setString(6, getUserLocationCode());
 
             int queryResult = preparedStatement.executeUpdate();
 
             if (queryResult > 0) {
                 labelNewRequestMessage.setText("New Request added");
+                navigateToDashboard();
             } else {
                 labelNewRequestMessage.setText("New request cannot be added. Please try again later");
             }
@@ -131,6 +143,43 @@ public class NewRequestController implements Initializable {
             e.printStackTrace();
             e.getCause();
         }
+    }
+
+    private boolean isUniqueDonationTag(String donationTag) {
+        DatabaseConnection connectNow = new DatabaseConnection();
+        String checkDonationTagQuery = "SELECT COUNT(*) FROM donation_request WHERE donation_tag = ?";
+
+        try (Connection connectDB = connectNow.getConnection();
+             PreparedStatement preparedStatement = connectDB.prepareStatement(checkDonationTagQuery)) {
+
+            preparedStatement.setString(1, donationTag);
+            ResultSet queryResult = preparedStatement.executeQuery();
+
+            return !queryResult.next() || queryResult.getInt(1) <= 0;
+        } catch (Exception e) {
+            e.printStackTrace();
+            e.getCause();
+            return false;
+        }
+    }
+
+    private String generateDonationTag() {
+        //Generate donation tag which will be 2 Alphabets followed by 4 digits
+        StringBuilder donationTag = new StringBuilder();
+        String alphabet = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
+        String numbers = "0123456789";
+
+        //Generate 2 random alphabets
+        for (int i = 0; i < 2; i++) {
+            donationTag.append(alphabet.charAt((int) (Math.random() * alphabet.length())));
+        }
+
+        //Generate 4 random numbers
+        for (int i = 0; i < 4; i++) {
+            donationTag.append(numbers.charAt((int) (Math.random() * numbers.length())));
+        }
+
+        return donationTag.toString();
     }
 
     public void navigateToDashboard() {

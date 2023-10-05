@@ -88,8 +88,8 @@ public class LoginController {
             }
         }
 
-        Image imageDelivery = new Image(getClass().getResourceAsStream("/com/example/fooddonation/assets/back.png"));
-        imageViewBack.setImage(imageDelivery);
+        Image imageBack = new Image(getClass().getResourceAsStream("/com/example/fooddonation/assets/back.png"));
+        imageViewBack.setImage(imageBack);
     }
 
     public void loginButtonAction(ActionEvent event) {
@@ -104,22 +104,48 @@ public class LoginController {
     public void validateLogin() {
 
         DatabaseConnection connectNow = new DatabaseConnection();
-        String loginQuery = "SELECT username FROM user_account WHERE username = ? AND password = ?";
+        String loginQuery = "SELECT username FROM user_account WHERE username = ? AND password = ? AND user_type = ?";
 
         try (Connection connectDB = connectNow.getConnection();
              PreparedStatement preparedStatement = connectDB.prepareStatement(loginQuery)
         ) {
             preparedStatement.setString(1, fieldUsername.getText());
             preparedStatement.setString(2, fieldPassword.getText());
+            preparedStatement.setInt(3, getUserType());
             ResultSet queryResult = preparedStatement.executeQuery();
 
             if (queryResult.next()) {
                 labelLoginMessage.setText("Login successful");
                 String retrievedUsername = queryResult.getString("username");
-                navigateToDashboard(retrievedUsername);
+
+                if (getUserType() == UserType.DONOR.getValue()) {
+                    navigateToDashboard(retrievedUsername);
+                } else {
+                    navigateToAdminDashboard(retrievedUsername);
+                }
             } else {
                 labelLoginMessage.setText("Please enter valid username and password");
             }
+        } catch (Exception e) {
+            e.printStackTrace();
+            e.getCause();
+        }
+    }
+
+    private void navigateToAdminDashboard(String retrievedUsername) {
+        try {
+
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/com/example/fooddonation/admin-dashboard.fxml"));
+            Parent root = loader.load();
+
+            Stage registerStage = new Stage();
+            registerStage.initStyle(StageStyle.UNDECORATED);
+            registerStage.setScene(new Scene(root, 800, 600));
+            registerStage.show();
+
+            AdminDashboardController adminDashboardController = loader.getController();
+            adminDashboardController.displayName(retrievedUsername);
+
         } catch (Exception e) {
             e.printStackTrace();
             e.getCause();
