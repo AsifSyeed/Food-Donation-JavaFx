@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ComboBox?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
+
+
+<AnchorPane prefHeight="600.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.fooddonation.controller.AdminUpdateRequestController">
+   <children>
+      <Label layoutX="115.0" layoutY="214.0" prefHeight="26.0" prefWidth="82.0" text="Request Tag" AnchorPane.leftAnchor="115.0" AnchorPane.topAnchor="214.0" />
+      <Label layoutX="115.0" layoutY="244.0" prefHeight="26.0" text="Requested By" AnchorPane.leftAnchor="115.0" AnchorPane.topAnchor="244.0" />
+      <Button fx:id="btnUpdateRequest" layoutX="343.0" layoutY="544.0" mnemonicParsing="false" onAction="#updatedRequestAction" text="Update" AnchorPane.bottomAnchor="30.0" AnchorPane.leftAnchor="320.0" />
+      <Label alignment="CENTER" contentDisplay="CENTER" layoutX="264.0" layoutY="107.0" text="Update Donation Request" textAlignment="CENTER" textFill="#f2a500" AnchorPane.leftAnchor="50.0" AnchorPane.rightAnchor="50.0" AnchorPane.topAnchor="50.0">
+         <font>
+            <Font size="30.0" />
+         </font>
+      </Label>
+      <Button fx:id="btnCancel" layoutX="399.0" layoutY="544.0" mnemonicParsing="false" onAction="#cancelButtonAction" text="Cancel" AnchorPane.bottomAnchor="30.0" AnchorPane.rightAnchor="320.0" />
+      <Label layoutX="115.0" layoutY="274.0" prefHeight="26.0" text="Location" AnchorPane.leftAnchor="115.0" AnchorPane.topAnchor="274.0" />
+      <Label layoutX="115.0" layoutY="304.0" prefHeight="26.0" text="Status" AnchorPane.leftAnchor="115.0" AnchorPane.topAnchor="304.0" />
+      <Label layoutX="115.0" layoutY="334.0" prefHeight="26.0" text="Assigned Agent" AnchorPane.leftAnchor="115.0" AnchorPane.topAnchor="334.0" />
+      <Label layoutX="115.0" layoutY="364.0" prefHeight="26.0" text="Assigned Delivery Boy" AnchorPane.leftAnchor="115.0" AnchorPane.topAnchor="364.0" />
+      <TextField fx:id="fieldRequestTag" editable="false" layoutX="515.0" layoutY="214.0" AnchorPane.rightAnchor="125.5" AnchorPane.topAnchor="214.0" />
+      <TextField fx:id="fieldRequestedBy" editable="false" layoutX="515.0" layoutY="244.0" AnchorPane.rightAnchor="125.5" AnchorPane.topAnchor="244.0" />
+      <TextField fx:id="fieldLocation" editable="false" layoutX="515.0" layoutY="274.0" AnchorPane.rightAnchor="125.5" AnchorPane.topAnchor="274.0" />
+      <ComboBox fx:id="dropdownStatus" layoutX="515.0" layoutY="304.0" prefHeight="26.0" prefWidth="160.0" AnchorPane.rightAnchor="125.0" AnchorPane.topAnchor="304.0" />
+      <ComboBox fx:id="dropdownAgent" layoutX="515.0" layoutY="334.0" prefHeight="26.0" prefWidth="160.0" AnchorPane.rightAnchor="125.0" AnchorPane.topAnchor="334.0" />
+      <ComboBox fx:id="dropdownDeliveryBoy" layoutX="515.0" layoutY="364.0" prefHeight="26.0" prefWidth="160.0" AnchorPane.rightAnchor="125.0" AnchorPane.topAnchor="364.0" />
+      <Label fx:id="labelAlertMessage" alignment="CENTER" contentDisplay="CENTER" layoutX="101.0" layoutY="438.0" textAlignment="CENTER" AnchorPane.leftAnchor="101.0" AnchorPane.rightAnchor="99.0" />
+   </children>
+</AnchorPane>

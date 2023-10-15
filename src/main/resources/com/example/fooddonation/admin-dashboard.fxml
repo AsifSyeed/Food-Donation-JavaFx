@@ -29,8 +29,8 @@
             <TableColumn fx:id="colFoodName" prefWidth="115.0" text="Food Name" />
             <TableColumn fx:id="colQuantity" prefWidth="117.5" text="Food Quantity(KG)" />
             <TableColumn fx:id="colStatus" prefWidth="79.5" text="Status" />
-            <TableColumn prefWidth="118.0" text="Assigned Agent" />
-            <TableColumn prefWidth="139.0" text="Assigned Delivery Boy" />
+            <TableColumn fx:id="colAgent" prefWidth="118.0" text="Assigned Agent" />
+            <TableColumn fx:id="colDeliveryBoy" prefWidth="139.0" text="Assigned Delivery Boy" />
          </columns>
       </TableView>
       <Label layoutX="29.0" layoutY="105.0" text="Donation Requests" AnchorPane.leftAnchor="20.0">

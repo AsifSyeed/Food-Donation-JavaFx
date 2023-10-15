@@ -18,7 +18,6 @@ import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
-import org.w3c.dom.events.MouseEvent;
 
 import java.net.URL;
 import java.sql.Connection;
@@ -54,6 +53,12 @@ public class AdminDashboardController implements Initializable {
     @FXML
     private TableColumn<DonationRequest, String> colRequestedBy;
 
+    @FXML
+    private TableColumn<DonationRequest, String> colAgent;
+
+    @FXML
+    private TableColumn<DonationRequest, String> colDeliveryBoy;
+
     private String username;
     ObservableList<DonationRequest> donationList = FXCollections.observableArrayList();
 
@@ -64,6 +69,8 @@ public class AdminDashboardController implements Initializable {
         colQuantity.setCellValueFactory(new PropertyValueFactory<DonationRequest, Integer>("foodQuantity"));
         colStatus.setCellValueFactory(new PropertyValueFactory<DonationRequest, Integer>("donationStatus"));
         colRequestedBy.setCellValueFactory(new PropertyValueFactory<DonationRequest, String>("requestedBy"));
+        colAgent.setCellValueFactory(new PropertyValueFactory<DonationRequest, String>("agent"));
+        colDeliveryBoy.setCellValueFactory(new PropertyValueFactory<DonationRequest, String>("deliveryBoy"));
 
         donationList = getDonationByCurrentUser();
         tableRequest.setItems(donationList);
@@ -85,7 +92,9 @@ public class AdminDashboardController implements Initializable {
                         queryResult.getInt("food_quantity"),
                         DonationStatus.getStringValue(queryResult.getInt("donation_status")),
                         queryResult.getString("food_name"),
-                        queryResult.getString("requested_by")
+                        queryResult.getString("requested_by"),
+                        queryResult.getString("agent"),
+                        queryResult.getString("delivery_boy")
                 ));
             }
 
@@ -112,7 +121,7 @@ public class AdminDashboardController implements Initializable {
             Parent root = FXMLLoader.load(getClass().getResource("/com/example/fooddonation/landing-page.fxml"));
 
             Stage registerStage = new Stage();
-            registerStage.initStyle(StageStyle.UNDECORATED);
+            registerStage.initStyle(StageStyle.DECORATED);
             registerStage.setScene(new Scene(root, 800, 600));
             registerStage.show();
         } catch (Exception e) {
@@ -129,27 +138,30 @@ public class AdminDashboardController implements Initializable {
         this.username = username;
     }
 
-    public void navigateToNewRequestPage() {
-        try {
-            FXMLLoader loader = new FXMLLoader(getClass().getResource("/com/example/fooddonation/new-request.fxml"));
-            Parent root = loader.load();
-
-            Stage registerStage = new Stage();
-            registerStage.initStyle(StageStyle.UNDECORATED);
-            registerStage.setScene(new Scene(root, 800, 600));
-            registerStage.show();
-
-            NewRequestController newRequestController = loader.getController();
-            newRequestController.displayName(getUsername());
-        } catch (Exception e) {
-            e.printStackTrace();
-            e.getCause();
-        }
-    }
-
     //Mouse event handlers for tableView items
     public void getDonationItem() {
-        System.out.println("Clicked on " + tableRequest.getSelectionModel().getSelectedItem().getDonationTag());
+        String requestTag = tableRequest.getSelectionModel().getSelectedItem().getDonationTag();
+        System.out.println("Clicked on " + requestTag);
+
+        if (requestTag != null) {
+            try {
+
+                FXMLLoader loader = new FXMLLoader(getClass().getResource("/com/example/fooddonation/admin-update-request.fxml"));
+                Parent root = loader.load();
+
+                Stage registerStage = new Stage();
+                registerStage.initStyle(StageStyle.DECORATED);
+                registerStage.setScene(new Scene(root, 800, 600));
+                registerStage.show();
+
+                AdminUpdateRequestController adminUpdateRequestController = loader.getController();
+                adminUpdateRequestController.displayRequestTag(requestTag);
+
+            } catch (Exception e) {
+                e.printStackTrace();
+                e.getCause();
+            }
+        }
     }
 }
 

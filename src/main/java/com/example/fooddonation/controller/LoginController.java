@@ -139,7 +139,7 @@ public class LoginController {
             Parent root = loader.load();
 
             Stage registerStage = new Stage();
-            registerStage.initStyle(StageStyle.UNDECORATED);
+            registerStage.initStyle(StageStyle.DECORATED);
             registerStage.setScene(new Scene(root, 800, 600));
             registerStage.show();
 
@@ -159,7 +159,7 @@ public class LoginController {
             Parent root = loader.load();
 
             Stage registerStage = new Stage();
-            registerStage.initStyle(StageStyle.UNDECORATED);
+            registerStage.initStyle(StageStyle.DECORATED);
             registerStage.setScene(new Scene(root, 800, 600));
             registerStage.show();
 
@@ -178,7 +178,7 @@ public class LoginController {
             Parent root = FXMLLoader.load(getClass().getResource("/com/example/fooddonation/signup.fxml"));
 
             Stage registerStage = new Stage();
-            registerStage.initStyle(StageStyle.UNDECORATED);
+            registerStage.initStyle(StageStyle.DECORATED);
             registerStage.setScene(new Scene(root, 800, 600));
             registerStage.show();
         } catch (Exception e) {
@@ -193,7 +193,7 @@ public class LoginController {
             Parent root = FXMLLoader.load(getClass().getResource("/com/example/fooddonation/landing-page.fxml"));
 
             Stage registerStage = new Stage();
-            registerStage.initStyle(StageStyle.UNDECORATED);
+            registerStage.initStyle(StageStyle.DECORATED);
             registerStage.setScene(new Scene(root, 800, 600));
             registerStage.show();
         } catch (Exception e) {

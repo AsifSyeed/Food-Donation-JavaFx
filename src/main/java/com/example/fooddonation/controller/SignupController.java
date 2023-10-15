@@ -174,7 +174,7 @@ public class SignupController implements Initializable {
             Parent root = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("/com/example/fooddonation/login.fxml")));
 
             Stage registerStage = new Stage();
-            registerStage.initStyle(StageStyle.UNDECORATED);
+            registerStage.initStyle(StageStyle.DECORATED);
             registerStage.setScene(new Scene(root, 800, 600));
             registerStage.show();
         } catch (Exception e) {

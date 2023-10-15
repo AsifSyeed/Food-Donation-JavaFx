@@ -55,7 +55,7 @@ public class LandingController implements Initializable {
             Parent root = loader.load();
 
             Stage registerStage = new Stage();
-            registerStage.initStyle(StageStyle.UNDECORATED);
+            registerStage.initStyle(StageStyle.DECORATED);
             registerStage.setScene(new Scene(root, 800, 600));
             registerStage.show();
 

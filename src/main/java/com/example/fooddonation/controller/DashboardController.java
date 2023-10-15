@@ -82,7 +82,9 @@ public class DashboardController implements Initializable {
                         queryResult.getInt("food_quantity"),
                         DonationStatus.getStringValue(queryResult.getInt("donation_status")),
                         queryResult.getString("food_name"),
-                        queryResult.getString("requested_by")
+                        queryResult.getString("requested_by"),
+                        "",
+                        ""
                 ));
             }
 
@@ -109,7 +111,7 @@ public class DashboardController implements Initializable {
             Parent root = FXMLLoader.load(getClass().getResource("/com/example/fooddonation/landing-page.fxml"));
 
             Stage registerStage = new Stage();
-            registerStage.initStyle(StageStyle.UNDECORATED);
+            registerStage.initStyle(StageStyle.DECORATED);
             registerStage.setScene(new Scene(root, 800, 600));
             registerStage.show();
         } catch (Exception e) {
@@ -132,7 +134,7 @@ public class DashboardController implements Initializable {
             Parent root = loader.load();
 
             Stage registerStage = new Stage();
-            registerStage.initStyle(StageStyle.UNDECORATED);
+            registerStage.initStyle(StageStyle.DECORATED);
             registerStage.setScene(new Scene(root, 800, 600));
             registerStage.show();
 

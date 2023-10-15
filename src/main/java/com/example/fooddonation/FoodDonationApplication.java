@@ -15,7 +15,7 @@ public class FoodDonationApplication extends Application {
     public void start(Stage stage) throws IOException {
         Parent root = FXMLLoader.load(getClass().getResource("landing-page.fxml"));
 
-        stage.initStyle(StageStyle.UNDECORATED);
+        stage.initStyle(StageStyle.DECORATED);
         stage.setScene(new Scene(root, 800, 600));
         stage.show();
     }

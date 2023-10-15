@@ -2,7 +2,28 @@ package com.example.fooddonation.model;
 
 public class DonationRequest {
     int foodQuantity;
-    String foodName, donationStatus, donationTag, requestedBy;
+    String foodName;
+    String donationStatus;
+    String donationTag;
+    String requestedBy;
+    String agent;
+    String deliveryBoy;
+
+    public String getAgent() {
+        return agent;
+    }
+
+    public void setAgent(String agent) {
+        this.agent = agent;
+    }
+
+    public String getDeliveryBoy() {
+        return deliveryBoy;
+    }
+
+    public void setDeliveryBoy(String deliveryBoy) {
+        this.deliveryBoy = deliveryBoy;
+    }
 
     public String getDonationTag() {
         return donationTag;
@@ -44,11 +65,13 @@ public class DonationRequest {
         this.requestedBy = requestedBy;
     }
 
-    public DonationRequest(String donationTag, int foodQuantity, String donationStatus, String foodName, String requestedBy) {
+    public DonationRequest(String donationTag, int foodQuantity, String donationStatus, String foodName, String requestedBy, String agent, String deliveryBoy) {
         this.donationTag = donationTag;
         this.donationStatus = donationStatus;
         this.foodQuantity = foodQuantity;
         this.foodName = foodName;
         this.requestedBy = requestedBy;
+        this.agent = agent;
+        this.deliveryBoy = deliveryBoy;
     }
 }

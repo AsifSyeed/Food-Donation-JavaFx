@@ -2,11 +2,10 @@ package com.example.fooddonation.model.enums;
 
 public enum DonationStatus {
     PENDING(1, "Requested"),
-    APPROVED(2, "Rejected"),
-    REJECTED(3, "Approved"),
-    AGENT_ASSIGNED(4, "Agent Assigned"),
-    DELIVERY_BOY_ASSIGNED(5, "Delivery Boy Assigned"),
-    DELIVERED(6, "Delivered");
+    REJECTED(2, "Rejected"),
+    AGENT_ASSIGNED(3, "Agent Assigned"),
+    DELIVERY_BOY_ASSIGNED(4, "Delivery Boy Assigned"),
+    DELIVERED(5, "Delivered");
 
     private final int intValue;
     private final String stringValue;
@@ -32,5 +31,14 @@ public enum DonationStatus {
             }
         }
         return "Unknown";
+    }
+
+    public static int getIntValue(String stringValue) {
+        for (DonationStatus status : DonationStatus.values()) {
+            if (status.getStringValue().equals(stringValue)) {
+                return status.getIntValue();
+            }
+        }
+        return 0;
     }
 }
