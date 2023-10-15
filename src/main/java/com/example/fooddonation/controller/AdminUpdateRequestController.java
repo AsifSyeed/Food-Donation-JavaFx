@@ -49,6 +49,9 @@ public class AdminUpdateRequestController {
     @FXML
     private Label labelAlertMessage;
 
+    @FXML
+    private Label labelAssignedAgent;
+
     private String requestTag;
 
     private final ArrayList<DonationStatus> donationStatusArrayList = new ArrayList<>();
@@ -62,6 +65,14 @@ public class AdminUpdateRequestController {
     }
 
     private String username;
+    private int userType;
+    public int getUserType() {
+        return userType;
+    }
+
+    public void setUserType(int userType) {
+        this.userType = userType;
+    }
 
     public String getRequestTag() {
         return requestTag;
@@ -84,7 +95,7 @@ public class AdminUpdateRequestController {
             registerStage.show();
 
             AdminDashboardController adminDashboardController = loader.getController();
-            adminDashboardController.displayName(getUsername());
+            adminDashboardController.displayName(getUsername(), getUserType());
 
         } catch (Exception e) {
             e.printStackTrace();
@@ -96,8 +107,9 @@ public class AdminUpdateRequestController {
         dismissView();
     }
 
-    public void displayRequestTag(String requestTag) {
+    public void displayRequestTag(String requestTag, String username, int userType) {
         setUsername(username);
+        setUserType(userType);
         setRequestTag(requestTag);
         fieldRequestTag.setText(requestTag);
 
@@ -165,10 +177,32 @@ public class AdminUpdateRequestController {
 
     private void getDonationStatusList() {
 
-        donationStatusArrayList.addAll(List.of(DonationStatus.values()));
+        if (getUserType() == UserType.ADMIN.getValue()) {
+            donationStatusArrayList.addAll(List.of(DonationStatus.values()));
 
-        for (DonationStatus donationStatus : donationStatusArrayList) {
-            dropdownStatus.getItems().add(donationStatus.getStringValue());
+            for (DonationStatus donationStatus : donationStatusArrayList) {
+                dropdownStatus.getItems().add(donationStatus.getStringValue());
+            }
+        } else if (getUserType() == UserType.AGENT.getValue()) {
+            DonationStatus[] allStatusValues = DonationStatus.values();
+
+            // Add enum values to the ArrayList, skipping the first item
+            donationStatusArrayList.addAll(Arrays.asList(allStatusValues).subList(2, allStatusValues.length));
+
+            // You now have an ArrayList with enum values excluding the first item
+            for (DonationStatus donationStatus : donationStatusArrayList) {
+                dropdownStatus.getItems().add(donationStatus.getStringValue());
+            }
+        } else if (getUserType() == UserType.DELIVERY_BOY.getValue()) {
+            DonationStatus[] allStatusValues = DonationStatus.values();
+
+            // Add enum values to the ArrayList, skipping the first item
+            donationStatusArrayList.addAll(Arrays.asList(allStatusValues).subList(4, allStatusValues.length));
+
+            // You now have an ArrayList with enum values excluding the first item
+            for (DonationStatus donationStatus : donationStatusArrayList) {
+                dropdownStatus.getItems().add(donationStatus.getStringValue());
+            }
         }
     }
 
@@ -189,18 +223,35 @@ public class AdminUpdateRequestController {
                 fieldRequestedBy.setText(queryResult.getString("requested_by"));
                 fieldLocation.setText(getDonorLocation(queryResult.getString("donor_location")));
                 dropdownStatus.getSelectionModel().select(DonationStatus.getStringValue(queryResult.getInt("donation_status")));
-                getAgentList(queryResult.getString("donor_location"));
-                getDeliveryBoyList(queryResult.getString("donor_location"));
-
                 String agent = queryResult.getString("agent");
                 String deliveryBoy = queryResult.getString("delivery_boy");
 
-                if (agent != null) {
-                    dropdownAgent.getSelectionModel().select(agent);
-                }
+                if (getUserType() == UserType.ADMIN.getValue()) {
+                    getAgentList(queryResult.getString("donor_location"));
+                    getDeliveryBoyList(queryResult.getString("donor_location"));
 
-                if (deliveryBoy != null) {
+                    if (agent != null) {
+                        dropdownAgent.getSelectionModel().select(agent);
+                    }
+
+                    if (deliveryBoy != null) {
+                        dropdownDeliveryBoy.getSelectionModel().select(deliveryBoy);
+                    }
+                } else if (getUserType() == UserType.AGENT.getValue()) {
+                    dropdownAgent.getItems().add(agent);
+                    dropdownAgent.getSelectionModel().select(agent);
+                    getDeliveryBoyList(queryResult.getString("donor_location"));
+
+                    if (deliveryBoy != null) {
+                        dropdownDeliveryBoy.getSelectionModel().select(deliveryBoy);
+                    }
+                } else if (getUserType() == UserType.DELIVERY_BOY.getValue()) {
+                    dropdownDeliveryBoy.getItems().add(deliveryBoy);
                     dropdownDeliveryBoy.getSelectionModel().select(deliveryBoy);
+
+                    //hide the agent dropdown
+                    dropdownAgent.setVisible(false);
+                    labelAssignedAgent.setVisible(false);
                 }
             }
 

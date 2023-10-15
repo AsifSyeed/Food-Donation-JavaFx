@@ -3,6 +3,7 @@ package com.example.fooddonation.controller;
 import com.example.fooddonation.DatabaseConnection;
 import com.example.fooddonation.model.DonationRequest;
 import com.example.fooddonation.model.enums.DonationStatus;
+import com.example.fooddonation.model.enums.UserType;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
@@ -60,6 +61,16 @@ public class AdminDashboardController implements Initializable {
     private TableColumn<DonationRequest, String> colDeliveryBoy;
 
     private String username;
+    private int userType;
+
+    public int getUserType() {
+        return userType;
+    }
+
+    public void setUserType(int userType) {
+        this.userType = userType;
+    }
+
     ObservableList<DonationRequest> donationList = FXCollections.observableArrayList();
 
     @Override
@@ -71,18 +82,28 @@ public class AdminDashboardController implements Initializable {
         colRequestedBy.setCellValueFactory(new PropertyValueFactory<DonationRequest, String>("requestedBy"));
         colAgent.setCellValueFactory(new PropertyValueFactory<DonationRequest, String>("agent"));
         colDeliveryBoy.setCellValueFactory(new PropertyValueFactory<DonationRequest, String>("deliveryBoy"));
-
-        donationList = getDonationByCurrentUser();
-        tableRequest.setItems(donationList);
     }
 
     private ObservableList<DonationRequest> getDonationByCurrentUser() {
         DatabaseConnection connectNow = new DatabaseConnection();
-        String getDonationListQuery = "SELECT * FROM donation_request";
+        String getDonationListQuery = "";
+
+        if (getUserType() == UserType.ADMIN.getValue()) {
+            getDonationListQuery = "SELECT * FROM donation_request";
+        } else if (getUserType() == UserType.AGENT.getValue()) {
+            getDonationListQuery = "SELECT * FROM donation_request WHERE agent = ?";
+        } else if (getUserType() == UserType.DELIVERY_BOY.getValue()) {
+            getDonationListQuery = "SELECT * FROM donation_request WHERE delivery_boy = ?";
+        }
+
         ObservableList<DonationRequest> dataList = FXCollections.observableArrayList();
 
         try (Connection connectDB = connectNow.getConnection();
              PreparedStatement preparedStatement = connectDB.prepareStatement(getDonationListQuery)) {
+
+            if (getUserType() == UserType.AGENT.getValue() || getUserType() == UserType.DELIVERY_BOY.getValue()) {
+                preparedStatement.setString(1, getUsername());
+            }
 
             ResultSet queryResult = preparedStatement.executeQuery();
 
@@ -108,8 +129,9 @@ public class AdminDashboardController implements Initializable {
         return dataList;
     }
 
-    public void displayName(String username) {
+    public void displayName(String username, int userType) {
         setUsername(username);
+        setUserType(userType);
         labelUsername.setText("Username: " + username);
 
         donationList = getDonationByCurrentUser();
@@ -155,7 +177,7 @@ public class AdminDashboardController implements Initializable {
                 registerStage.show();
 
                 AdminUpdateRequestController adminUpdateRequestController = loader.getController();
-                adminUpdateRequestController.displayRequestTag(requestTag);
+                adminUpdateRequestController.displayRequestTag(requestTag, getUsername(), getUserType());
 
             } catch (Exception e) {
                 e.printStackTrace();

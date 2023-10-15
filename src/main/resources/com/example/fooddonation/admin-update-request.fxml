@@ -21,7 +21,7 @@
       <Button fx:id="btnCancel" layoutX="399.0" layoutY="544.0" mnemonicParsing="false" onAction="#cancelButtonAction" text="Cancel" AnchorPane.bottomAnchor="30.0" AnchorPane.rightAnchor="320.0" />
       <Label layoutX="115.0" layoutY="274.0" prefHeight="26.0" text="Location" AnchorPane.leftAnchor="115.0" AnchorPane.topAnchor="274.0" />
       <Label layoutX="115.0" layoutY="304.0" prefHeight="26.0" text="Status" AnchorPane.leftAnchor="115.0" AnchorPane.topAnchor="304.0" />
-      <Label layoutX="115.0" layoutY="334.0" prefHeight="26.0" text="Assigned Agent" AnchorPane.leftAnchor="115.0" AnchorPane.topAnchor="334.0" />
+      <Label fx:id="labelAssignedAgent" layoutX="115.0" layoutY="334.0" prefHeight="26.0" text="Assigned Agent" AnchorPane.leftAnchor="115.0" AnchorPane.topAnchor="334.0" />
       <Label layoutX="115.0" layoutY="364.0" prefHeight="26.0" text="Assigned Delivery Boy" AnchorPane.leftAnchor="115.0" AnchorPane.topAnchor="364.0" />
       <TextField fx:id="fieldRequestTag" editable="false" layoutX="515.0" layoutY="214.0" AnchorPane.rightAnchor="125.5" AnchorPane.topAnchor="214.0" />
       <TextField fx:id="fieldRequestedBy" editable="false" layoutX="515.0" layoutY="244.0" AnchorPane.rightAnchor="125.5" AnchorPane.topAnchor="244.0" />

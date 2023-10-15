@@ -144,7 +144,7 @@ public class LoginController {
             registerStage.show();
 
             AdminDashboardController adminDashboardController = loader.getController();
-            adminDashboardController.displayName(retrievedUsername);
+            adminDashboardController.displayName(retrievedUsername, getUserType());
 
         } catch (Exception e) {
             e.printStackTrace();
