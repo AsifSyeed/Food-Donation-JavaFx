@@ -34,9 +34,6 @@ public class AdminDashboardController implements Initializable {
     private Button btnLogout;
 
     @FXML
-    private Button btnNewRequest;
-
-    @FXML
     private TableView<DonationRequest> tableRequest;
 
     @FXML
@@ -59,6 +56,9 @@ public class AdminDashboardController implements Initializable {
 
     @FXML
     private TableColumn<DonationRequest, String> colDeliveryBoy;
+
+    @FXML
+    private Button btnAddAgent;
 
     private String username;
     private int userType;
@@ -136,6 +136,10 @@ public class AdminDashboardController implements Initializable {
 
         donationList = getDonationByCurrentUser();
         tableRequest.setItems(donationList);
+
+        if (getUserType() != UserType.ADMIN.getValue()) {
+            btnAddAgent.setVisible(false);
+        }
     }
 
     public void logoutButtonAction(ActionEvent event) {
@@ -183,6 +187,26 @@ public class AdminDashboardController implements Initializable {
                 e.printStackTrace();
                 e.getCause();
             }
+        }
+    }
+
+    public void addAgentAction(ActionEvent event) {
+        try {
+
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/com/example/fooddonation/signup.fxml"));
+            Parent root = loader.load();
+
+            Stage registerStage = new Stage();
+            registerStage.initStyle(StageStyle.DECORATED);
+            registerStage.setScene(new Scene(root, 800, 600));
+            registerStage.show();
+
+            SignupController signupController = loader.getController();
+            signupController.passUserType(UserType.AGENT.getValue());
+
+        } catch (Exception e) {
+            e.printStackTrace();
+            e.getCause();
         }
     }
 }

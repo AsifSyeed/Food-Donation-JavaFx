@@ -15,6 +15,7 @@ import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
+import org.w3c.dom.events.MouseEvent;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -175,12 +176,16 @@ public class LoginController {
     public void signupButtonAction(ActionEvent event) {
         try {
 
-            Parent root = FXMLLoader.load(getClass().getResource("/com/example/fooddonation/signup.fxml"));
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/com/example/fooddonation/signup.fxml"));
+            Parent root = loader.load();
 
             Stage registerStage = new Stage();
             registerStage.initStyle(StageStyle.DECORATED);
             registerStage.setScene(new Scene(root, 800, 600));
             registerStage.show();
+
+            SignupController signupController = loader.getController();
+            signupController.passUserType(getUserType());
         } catch (Exception e) {
             e.printStackTrace();
             e.getCause();
@@ -196,6 +201,26 @@ public class LoginController {
             registerStage.initStyle(StageStyle.DECORATED);
             registerStage.setScene(new Scene(root, 800, 600));
             registerStage.show();
+        } catch (Exception e) {
+            e.printStackTrace();
+            e.getCause();
+        }
+    }
+
+    public void forgotPasswordAction() {
+        try {
+
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/com/example/fooddonation/forgot-password.fxml"));
+            Parent root = loader.load();
+
+            Stage registerStage = new Stage();
+            registerStage.initStyle(StageStyle.DECORATED);
+            registerStage.setScene(new Scene(root, 800, 600));
+            registerStage.show();
+
+            ForgotPasswordController forgotPasswordController = loader.getController();
+            forgotPasswordController.userTypeValue(getUserType());
+
         } catch (Exception e) {
             e.printStackTrace();
             e.getCause();

@@ -9,8 +9,11 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.event.ActionEvent;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
+import org.w3c.dom.events.MouseEvent;
 
 import java.net.URL;
 import java.sql.*;
@@ -35,10 +38,32 @@ public class SignupController implements Initializable {
     @FXML
     private Label labelSignupMessage;
 
+    @FXML
+    private Label labelSignup;
+
+    @FXML
+    private Button btnSignup;
+
+    @FXML
+    private ImageView imageViewBack;
+
+    private int userType;
+
+    public int getUserType() {
+        return userType;
+    }
+
+    public void setUserType(int userType) {
+        this.userType = userType;
+    }
+
     private final Map<String, String> locationCodeMap = new HashMap<>();
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
         getLocationList();
+
+        Image imageBack = new Image(getClass().getResourceAsStream("/com/example/fooddonation/assets/back.png"));
+        imageViewBack.setImage(imageBack);
     }
     public void signupButtonAction() {
         if (fieldUsername.getText().isBlank()) {
@@ -76,7 +101,7 @@ public class SignupController implements Initializable {
             preparedStatement.setString(1, fieldUsername.getText());
             preparedStatement.setString(2, fieldContactNumber.getText());
             preparedStatement.setString(3, fieldPassword.getText());
-            preparedStatement.setInt(4, UserType.DONOR.getValue());
+            preparedStatement.setInt(4, getUserType());
 
             String selectedLocationName = dropdownLocation.getSelectionModel().getSelectedItem();
             preparedStatement.setString(5, locationCodeMap.get(selectedLocationName));
@@ -84,12 +109,20 @@ public class SignupController implements Initializable {
             int queryResult = preparedStatement.executeUpdate();
 
             if (queryResult > 0) {
-                labelSignupMessage.setText("Sign up successful!. Please login with your user account");
+                if (getUserType() == UserType.AGENT.getValue()) {
+                    labelSignupMessage.setText("Agent added successfully");
+                } else {
+                    labelSignupMessage.setText("Signup successful");
+                }
             }
         } catch (Exception e) {
             e.printStackTrace();
             e.getCause();
-            labelSignupMessage.setText("Sign up failed. Please try again later!");
+            if (getUserType() == UserType.AGENT.getValue()) {
+                labelSignupMessage.setText("Failed to add agent");
+            } else {
+                labelSignupMessage.setText("Signup failed");
+            }
         }
     }
 
@@ -180,6 +213,36 @@ public class SignupController implements Initializable {
         } catch (Exception e) {
             e.printStackTrace();
             e.getCause();
+        }
+    }
+
+    public void passUserType(int value) {
+        setUserType(value);
+
+        if (getUserType() == UserType.AGENT.getValue()) {
+            labelSignup.setText("Agent Signup");
+            btnSignup.setText("Add Agent");
+        }
+    }
+
+    public void backButtonAction() {
+        if (getUserType() == UserType.AGENT.getValue()) {
+            //dismiss the current window
+            Stage stage = (Stage) imageViewBack.getScene().getWindow();
+            stage.close();
+
+        } else {
+            try {
+                Parent root = FXMLLoader.load(getClass().getResource("/com/example/fooddonation/landing-page.fxml"));
+
+                Stage registerStage = new Stage();
+                registerStage.initStyle(StageStyle.DECORATED);
+                registerStage.setScene(new Scene(root, 800, 600));
+                registerStage.show();
+            } catch (Exception e) {
+                e.printStackTrace();
+                e.getCause();
+            }
         }
     }
 }

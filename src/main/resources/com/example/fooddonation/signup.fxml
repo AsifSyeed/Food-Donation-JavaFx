@@ -5,12 +5,13 @@
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.PasswordField?>
 <?import javafx.scene.control.TextField?>
+<?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
 <AnchorPane prefHeight="600.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.fooddonation.controller.SignupController">
    <children>
-      <Label layoutX="369.0" layoutY="81.0" text="Sign Up" textFill="#f2a500">
+      <Label fx:id="labelSignup" layoutX="369.0" layoutY="81.0" text="Sign Up" textFill="#f2a500">
          <font>
             <Font size="30.0" />
          </font>
@@ -25,9 +26,8 @@
       <PasswordField fx:id="fieldPassword" layoutX="419.0" layoutY="284.0" />
       <PasswordField fx:id="fieldConfirmPassword" layoutX="419.0" layoutY="325.0" />
       <Button fx:id="btnSignup" layoutX="414.0" layoutY="435.0" mnemonicParsing="false" onAction="#signupButtonAction" text="Sign up" />
-      <Label layoutX="303.0" layoutY="474.0" text="Already have an account?" />
-      <Button fx:id="btnLogin" layoutX="449.0" layoutY="470.0" mnemonicParsing="false" onAction="#loginButtonAction" text="Login" />
       <ComboBox fx:id="dropdownLocation" layoutX="419.0" layoutY="244.0" prefHeight="26.0" prefWidth="160.0" />
       <Label fx:id="labelSignupMessage" alignment="CENTER" contentDisplay="CENTER" layoutX="171.0" layoutY="374.0" prefHeight="26.0" prefWidth="472.0" textAlignment="CENTER" AnchorPane.leftAnchor="171.0" AnchorPane.rightAnchor="157.0" />
+      <ImageView fx:id="imageViewBack" fitHeight="30.0" fitWidth="30.0" layoutX="63.0" layoutY="62.0" onMouseClicked="#backButtonAction" pickOnBounds="true" preserveRatio="true" AnchorPane.leftAnchor="30.0" AnchorPane.topAnchor="30.0" />
    </children>
 </AnchorPane>
